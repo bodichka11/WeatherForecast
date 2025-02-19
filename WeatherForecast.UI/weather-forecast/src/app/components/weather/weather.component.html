@@ -1,18 +1,29 @@
 <div class="container">
-    <h1>Weather Forecast</h1>
-  
-    <div>
-      <label for="postalCode">Postal Code</label>
-      <input id="postalCode" [(ngModel)]="postalCode" placeholder="Enter postal code" />
-      <button (click)="getWeatherByPostalCode()">Get Weather</button>
-    </div>
-  
-    <div>
-      <label for="city">City</label>
-      <input id="city" [(ngModel)]="city" placeholder="Enter city" />
-      <button (click)="getWeatherByCity()">Get Weather</button>
-    </div>
-  
+  <h1>Weather Forecast</h1>
+
+  <!-- Postal Code Section -->
+  <fieldset>
+    <legend><i class="fas fa-mail-bulk"></i> By Postal Code</legend>
+    <label for="postalCode">Postal Code</label>
+    <input id="postalCode" [(ngModel)]="postalCode" placeholder="Enter postal code" />
+    <button (click)="getWeatherByPostalCode()">
+      <i class="fas fa-search"></i> Get Weather
+    </button>
+  </fieldset>
+
+  <!-- City Section -->
+  <fieldset>
+    <legend><i class="fas fa-city"></i> By City</legend>
+    <label for="city">City</label>
+    <input id="city" [(ngModel)]="city" placeholder="Enter city" />
+    <button (click)="getWeatherByCity()">
+      <i class="fas fa-search"></i> Get Weather
+    </button>
+  </fieldset>
+
+  <!-- Coordinates Section -->
+  <fieldset>
+    <legend><i class="fas fa-map-marker-alt"></i> By Coordinates</legend>
     <div>
       <label for="lat">Latitude</label>
       <input id="lat" type="number" [(ngModel)]="lat" placeholder="Enter latitude" />
@@ -21,18 +32,35 @@
       <label for="lon">Longitude</label>
       <input id="lon" type="number" [(ngModel)]="lon" placeholder="Enter longitude" />
     </div>
-    <button (click)="getWeatherByCoordinates()">Get Weather</button>
-  
-    <div *ngIf="errorMessage" class="error">
-      {{ errorMessage }}
-    </div>
-  
-    <div *ngIf="weather">
-      <h3>Weather Information</h3>
-      <p>Temperature: {{ weather.temperature }}°C</p>
-      <p>Windspeed: {{ weather.windspeed }} km/h</p>
-      <p>Weather Code: {{ weather.weatherCode }}</p>
-      <p>Time: {{ weather.time | date:'short' }}</p>
-    </div>
+    <button (click)="getWeatherByCoordinates()">
+      <i class="fas fa-search"></i> Get Weather
+    </button>
+  </fieldset>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error">
+    <i class="fas fa-exclamation-triangle"></i> {{ errorMessage }}
   </div>
-  
+
+  <!-- Weather Information -->
+  <div *ngIf="weather" class="weather-info">
+    <h3><i class="fas fa-sun"></i> Weather Information</h3>
+    <p><strong>Location:</strong> {{ locationName }}</p> <!-- Виводимо назву місця -->
+    <p><i class="fas fa-thermometer-half"></i> Temperature: {{ weather.temperature }}°C</p>
+    <p><i class="fas fa-arrow-up"></i> Windspeed: {{ weather.windspeed }} km/h</p>
+    <p><i class="fas fa-code"></i> Weather Code: {{ weather.weatherCode }}</p>
+    <p><i class="fas fa-clock"></i> Time: {{ weather.time | date:'short' }}</p>
+  </div>
+
+  <!-- Current Location -->
+  <div>
+    <button (click)="getWeatherByCurrentLocation()">
+      <i class="fas fa-location-arrow"></i> Get Weather by Current Location
+    </button>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="loading" class="loading">
+    <i class="fas fa-spinner fa-spin"></i> Loading...
+  </div>
+</div>

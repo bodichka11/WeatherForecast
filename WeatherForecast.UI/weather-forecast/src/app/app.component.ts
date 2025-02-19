@@ -6,8 +6,8 @@ import { WeatherService } from './services/weather.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true, // Ensure this is set to true if using standalone components
-  imports: [RouterOutlet, WeatherComponent, HttpClientModule], // Add HttpClientModule here
+  standalone: true,
+  imports: [RouterOutlet, WeatherComponent, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [WeatherService]
