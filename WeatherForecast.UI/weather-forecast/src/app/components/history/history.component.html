@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Search History</h1>
+
+    <div *ngIf="loading" class="loading">
+      <i class="fas fa-spinner fa-spin"></i> Loading...
+    </div>
+
+    <div *ngIf="errorMessage" class="error">
+      <i class="fas fa-exclamation-triangle"></i> {{ errorMessage }}
+    </div>
+  
+    <ul *ngIf="history.length > 0">
+      <li *ngFor="let item of history">
+        <strong>Search Term:</strong> {{ item.searchTerm }} |
+        <strong>Type:</strong> {{ item.searchType }} |
+        <strong>Date:</strong> {{ item.searchDate | date:'short' }}
+      </li>
+    </ul>
+
+    <p *ngIf="!loading && history.length === 0">No search history available.</p>
+  </div>

@@ -1,1 +1,11 @@
-<app-weather></app-weather>
+<div class="container">
+    <button class="custom-button" (click)="navigateTo('/weather')">
+      Weather
+    </button>
+  
+    <button class="custom-button" (click)="navigateTo('/history')">
+      Search History
+    </button>
+  </div>
+  
+  <router-outlet></router-outlet>

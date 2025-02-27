@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-weather',
-  standalone: true, // Ensure this is set to true if using standalone components
+  standalone: true,
   imports: [
     FormsModule,
     CommonModule,
-    HttpClientModule // Add HttpClientModule here
+    HttpClientModule
   ],
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.css'
@@ -23,14 +22,14 @@ export class WeatherComponent {
   lon: number = 0;
   weather: any;
   errorMessage: string = '';
-  locationName: string = ''; // Нова змінна для збереження назви місця
+  locationName: string = '';
   loading: boolean = false;
 
   constructor(private weatherService: WeatherService) {}
 
   getWeatherByPostalCode() {
     this.loading = true;
-    this.locationName = `Postal Code: ${this.postalCode}`; // Зберігаємо назву місця
+    this.locationName = `Postal Code: ${this.postalCode}`;
     this.weatherService.getWeatherByPostalCode(this.postalCode).subscribe({
       next: (data) => {
         this.weather = data;
@@ -46,7 +45,7 @@ export class WeatherComponent {
 
   getWeatherByCity() {
     this.loading = true;
-    this.locationName = this.city; // Зберігаємо назву місця
+    this.locationName = this.city;
     this.weatherService.getWeatherByCity(this.city).subscribe({
       next: (data) => {
         this.weather = data;
@@ -62,7 +61,7 @@ export class WeatherComponent {
 
   getWeatherByCoordinates() {
     this.loading = true;
-    this.locationName = `Coordinates: (${this.lat}, ${this.lon})`; // Зберігаємо назву місця
+    this.locationName = `Coordinates: (${this.lat}, ${this.lon})`;
     this.weatherService.getWeatherByCoordinates(this.lat, this.lon).subscribe({
       next: (data) => {
         this.weather = data;
@@ -79,7 +78,7 @@ export class WeatherComponent {
   getWeatherByCurrentLocation() {
     if (navigator.geolocation) {
       this.loading = true;
-      this.locationName = 'Current Location'; // Зберігаємо назву місця
+      this.locationName = 'Current Location';
       navigator.geolocation.getCurrentPosition(
         (position) => {
           this.lat = position.coords.latitude;
