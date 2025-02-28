@@ -39,5 +39,12 @@ namespace WeatherForecast.Controllers
             await _historyService.SaveSearchHistory($"{lat},{lon}", "coordinates");
             return Ok(result);
         }
+
+        [HttpGet("history")]
+        public async Task<IActionResult> GetSearchHistory()
+        {
+            var searchHistories = await _historyService.GetSearchHistory();
+            return Ok(searchHistories);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using WeatherForecast.Data;
 using WeatherForecast.Models;
 using WeatherForecast.Services.Interfaces;
@@ -24,6 +25,11 @@ namespace WeatherForecast.Services
 
             _context.SearchHistory.Add(history);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<SearchHistory>> GetSearchHistory()
+        {
+            return await _context.SearchHistory.ToListAsync();
         }
     }
 }
